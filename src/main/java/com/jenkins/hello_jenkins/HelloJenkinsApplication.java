@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HelloJenkinsApplication {
 
 	public static void main(String[] args) {
-		log.info("Hello Jenkins v3");
+		log.info("Hello Jenkins v4");
 		SpringApplication.run(HelloJenkinsApplication.class, args);
 	}
 
