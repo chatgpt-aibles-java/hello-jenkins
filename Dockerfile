@@ -1,0 +1,15 @@
+# Use the official maven/Java 17 image to build the app
+# with maven cache
+FROM maven:3.8.4-openjdk-17-slim AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Use the official OpenJDK 17 runtime as a parent image
+FROM openjdk:17-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+
+# Run the jar file
+ENTRYPOINT ["java", "-jar", "app.jar"]
